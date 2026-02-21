@@ -5,22 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DERİMOD Mağaza Denetim</title>
     
-    <!-- Hata Yakalayıcı (Eğer bir sorun olursa ekranda uyarı verecek) -->
     <script>
         window.onerror = function(message, source, lineno, colno, error) {
-            alert("Sistem Notu: \nHata: " + message + "\nSatır: " + lineno);
+            alert("Sistem Notu: \nHata: " + message + "\nSatır: " + lineno + "\nLütfen kodun tam kopyalandığından emin olun.");
             return true;
         };
     </script>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- React & ReactDOM (Güvenilir CDN) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-    
-    <!-- Babel (Tarayıcıda JSX derlemek için Güvenilir CDN) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js" crossorigin="anonymous"></script>
 
     <style>
@@ -39,18 +33,16 @@
 </head>
 <body class="bg-slate-50">
     
-    <!-- Yükleniyor Ekranı -->
     <div id="root">
         <div style="display:flex; justify-content:center; align-items:center; height:100vh; flex-direction:column; gap:15px; background-color:#0f172a;">
             <div style="font-size:32px; font-weight:900; letter-spacing:4px; font-family:serif; color:white;">DERİMOD</div>
-            <div style="font-size:16px; color:#cbd5e1; font-family:sans-serif;">Uygulama Yükleniyor... Lütfen Bekleyin.</div>
+            <div style="font-size:16px; color:#cbd5e1; font-family:sans-serif;">Uygulama Yükleniyor...</div>
         </div>
     </div>
 
-    <script type="text/babel" data-type="module">
+    <script type="text/babel">
         const { useState } = React;
 
-        // --- İKON BİLEŞENLERİ ---
         const IconCheckCircle = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>;
         const IconXCircle = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>;
         const IconMessageSquare = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>;
@@ -68,12 +60,9 @@
         const IconBox = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>;
         const IconCalendar = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>;
 
-        // --- VERİ TABANI ---
         const INITIAL_DATA = [
           {
-            id: 'cat1',
-            title: 'Mağaza ve Reyon Düzeni',
-            icon: <IconStore className="w-5 h-5" />,
+            id: 'cat1', title: 'Mağaza ve Reyon Düzeni', icon: <IconStore className="w-5 h-5" />,
             items: [
               { id: 'q1', text: 'Vitrin temizliği ve düzeni yapılmış mı ?', status: null, comment: '', image: null },
               { id: 'q2', text: 'Reyon temizliği ve düzeni yapılmış mı ?', status: null, comment: '', image: null },
@@ -81,9 +70,7 @@
             ]
           },
           {
-            id: 'cat2',
-            title: 'Ürün Grupları',
-            icon: <IconShirt className="w-5 h-5" />,
+            id: 'cat2', title: 'Ürün Grupları', icon: <IconShirt className="w-5 h-5" />,
             items: [
               { id: 'q4', text: 'Çanta düzeni yapılmış mı ?', status: null, comment: '', image: null },
               { id: 'q5', text: 'Çantalarda Alarm mevcut mu ?', status: null, comment: '', image: null },
@@ -94,9 +81,7 @@
             ]
           },
           {
-            id: 'cat3',
-            title: 'Personel ve Hedefler',
-            icon: <IconUsers className="w-5 h-5" />,
+            id: 'cat3', title: 'Personel ve Hedefler', icon: <IconUsers className="w-5 h-5" />,
             items: [
               { id: 'q10', text: 'Personel kıyafet prosedürüne uygun giyinmiş mi ?', status: null, comment: '', image: null },
               { id: 'q11', text: 'Personel anlık HGO bilgisine hakim mi ?', status: null, comment: '', image: null },
@@ -108,9 +93,7 @@
             ]
           },
           {
-            id: 'cat4',
-            title: 'Kasa ve Operasyon',
-            icon: <IconCreditCard className="w-5 h-5" />,
+            id: 'cat4', title: 'Kasa ve Operasyon', icon: <IconCreditCard className="w-5 h-5" />,
             items: [
               { id: 'q17', text: 'Kasa nakiti en geç 12:00 yatırıldı mı ?', status: null, comment: '', image: null },
               { id: 'q18', text: 'Yatmayan nakitin maili atılmış mı ?', status: null, comment: '', image: null },
@@ -124,9 +107,7 @@
             ]
           },
           {
-            id: 'cat5',
-            title: 'Transfer ve İrsaliye',
-            icon: <IconTruck className="w-5 h-5" />,
+            id: 'cat5', title: 'Transfer ve İrsaliye', icon: <IconTruck className="w-5 h-5" />,
             items: [
               { id: 'q26', text: 'Mağazanın Sanal satışların isteği yapılmış mı ?', status: null, comment: '', image: null },
               { id: 'q27', text: 'Diğer Mağazaların istekleri çıkartılmış mı ?', status: null, comment: '', image: null },
@@ -135,9 +116,7 @@
             ]
           },
           {
-            id: 'cat6',
-            title: 'Aksesuar Reyonu',
-            icon: <IconBriefcase className="w-5 h-5" />,
+            id: 'cat6', title: 'Aksesuar Reyonu', icon: <IconBriefcase className="w-5 h-5" />,
             items: [
               { id: 'q30', text: 'Cüzdan reyonu temiz ve düzenli mi ?', status: null, comment: '', image: null },
               { id: 'q31', text: 'Kemer stand düzeni ve doluluk oranı ?', status: null, comment: '', image: null },
@@ -145,9 +124,7 @@
             ]
           },
           {
-            id: 'cat7',
-            title: 'Depo ve İş Güvenliği',
-            icon: <IconBox className="w-5 h-5" />,
+            id: 'cat7', title: 'Depo ve İş Güvenliği', icon: <IconBox className="w-5 h-5" />,
             items: [
               { id: 'q33', text: 'Depo düzeni Alınmış mı ?', status: null, comment: '', image: null },
               { id: 'q34', text: 'Depo bölgesinde açılmayan koli mevcut mu ?', status: null, comment: '', image: null },
@@ -158,7 +135,6 @@
           }
         ];
 
-        // --- ANA UYGULAMA ---
         function App() {
           const [data, setData] = useState(INITIAL_DATA);
           const [isPreview, setIsPreview] = useState(false);
@@ -246,4 +222,161 @@
 
                     <div className="flex justify-center gap-6 mt-6 print:mt-4">
                       <div className="text-center">
-                        <div clas
+                        <div className="text-3xl font-bold text-slate-700 print-text-black">{progress}%</div>
+                        <div className="text-xs text-slate-500 uppercase font-semibold print-text-black">Tamamlanma</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold print-text-black">{score} / 100</div>
+                        <div className="text-xs text-slate-500 uppercase font-semibold print-text-black">Başarı Puanı</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-8 print:space-y-4">
+                    {data.map(category => (
+                      <div key={category.id} className="print-break-inside-avoid print:mb-4">
+                        <h3 className="text-xl font-bold text-slate-800 flex items-center mb-4 border-b pb-2 print-text-black print:mb-2 print:pb-1">
+                          <span className="mr-2 print-text-black">{category.icon}</span>
+                          {category.title}
+                        </h3>
+                        <div className="space-y-4 print:space-y-2">
+                          {category.items.map(item => (
+                            <div key={item.id} className="bg-slate-50 rounded-xl p-4 border border-slate-100 print-bg-white print-border-black print:rounded-none print:p-2">
+                              <div className="flex items-start justify-between">
+                                <p className="text-slate-700 font-medium pr-4 flex-1 print-text-black">{item.text}</p>
+                                <div className="flex-shrink-0">
+                                  {item.status === 'yes' ? (
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-emerald-100 text-emerald-700 print-bg-white print-text-black print:font-bold">
+                                      [ EVET ]
+                                    </span>
+                                  ) : item.status === 'no' ? (
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-rose-100 text-rose-700 print-bg-white print-text-black print:font-bold">
+                                      [ HAYIR ]
+                                    </span>
+                                  ) : (
+                                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-slate-200 text-slate-600 print-bg-white print-text-black">
+                                      [ BOŞ ]
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              {item.comment && (
+                                <div className="mt-2 text-sm text-slate-600 italic print-text-black">
+                                  <span className="font-bold print:inline hidden">Not: </span>{item.comment}
+                                </div>
+                              )}
+                              {item.image && (
+                                <div className="mt-4 print-break-inside-avoid print:mt-2">
+                                  <p className="text-xs font-semibold text-slate-400 mb-2 uppercase print-text-black">Fotoğraf:</p>
+                                  <img src={item.image} alt="Kanıt" className="max-h-64 rounded-lg object-contain border border-slate-200 print:max-h-48 print-border-black" />
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <div className="min-h-screen text-slate-800 font-sans pb-32">
+              <div className="bg-slate-900 text-white p-6 shadow-xl rounded-b-[2.5rem] mb-6">
+                <div className="flex justify-center mb-6 pt-2">
+                  <h1 className="text-4xl font-serif font-black tracking-[0.2em]">DERİMOD</h1>
+                </div>
+                <h2 className="text-xl font-medium mb-4 text-slate-300 text-center">Mağaza Denetim Formu</h2>
+                
+                <div className="bg-white/10 rounded-2xl p-4 space-y-3">
+                  <div className="flex items-center bg-white/10 rounded-xl px-4 py-1">
+                    <IconStore className="w-5 h-5 text-slate-300 mr-3" />
+                    <input type="text" placeholder="Mağaza Adı (örn: Şişli)" value={storeName} onChange={(e) => setStoreName(e.target.value)} className="w-full bg-transparent py-3 text-white placeholder-slate-400 focus:outline-none"/>
+                  </div>
+                  <div className="flex items-center bg-white/10 rounded-xl px-4 py-1">
+                    <IconUsers className="w-5 h-5 text-slate-300 mr-3" />
+                    <input type="text" placeholder="Denetmen Adı Soyadı" value={auditorName} onChange={(e) => setAuditorName(e.target.value)} className="w-full bg-transparent py-3 text-white placeholder-slate-400 focus:outline-none"/>
+                  </div>
+                  <div className="flex items-center bg-white/10 rounded-xl px-4 py-1">
+                    <IconCalendar className="w-5 h-5 text-slate-300 mr-3" />
+                    <input type="date" value={auditDate} onChange={(e) => setAuditDate(e.target.value)} className="w-full bg-transparent py-3 text-white focus:outline-none [color-scheme:dark]"/>
+                  </div>
+                </div>
+
+                <div className="mt-6">
+                  <div className="flex justify-between text-sm font-medium mb-2 text-slate-300">
+                    <span>İlerleme Durumu</span>
+                    <span>{answeredQuestions} / {totalQuestions}</span>
+                  </div>
+                  <div className="w-full bg-slate-800 rounded-full h-2.5">
+                    <div className="bg-white h-2.5 rounded-full transition-all duration-500 ease-out" style={{ width: `${progress}%` }}></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="max-w-3xl mx-auto px-4 space-y-6">
+                {data.map((category) => (
+                  <div key={category.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div className="bg-slate-50 px-5 py-4 border-b border-slate-200 flex items-center">
+                      <div className="bg-slate-900 text-white p-2.5 rounded-xl mr-4">
+                        {category.icon}
+                      </div>
+                      <h2 className="text-lg font-bold text-slate-800">{category.title}</h2>
+                    </div>
+                    
+                    <div className="divide-y divide-slate-100">
+                      {category.items.map((item) => (
+                        <div key={item.id} className="p-5">
+                          <p className="font-semibold text-slate-800 mb-4">{item.text}</p>
+                          <div className="flex gap-3 mb-4">
+                            <button onClick={() => handleStatusChange(category.id, item.id, 'yes')} className={`flex-1 flex items-center justify-center py-3.5 rounded-xl border-2 font-bold transition-all ${item.status === 'yes' ? 'bg-emerald-50 border-emerald-500 text-emerald-700' : 'bg-white border-slate-200 text-slate-600'}`}>
+                              <IconCheckCircle className={`w-5 h-5 mr-2 ${item.status === 'yes' ? 'text-emerald-500' : 'text-slate-400'}`} /> Evet
+                            </button>
+                            <button onClick={() => handleStatusChange(category.id, item.id, 'no')} className={`flex-1 flex items-center justify-center py-3.5 rounded-xl border-2 font-bold transition-all ${item.status === 'no' ? 'bg-rose-50 border-rose-500 text-rose-700' : 'bg-white border-slate-200 text-slate-600'}`}>
+                              <IconXCircle className={`w-5 h-5 mr-2 ${item.status === 'no' ? 'text-rose-500' : 'text-slate-400'}`} /> Hayır
+                            </button>
+                          </div>
+                          <div className="space-y-3">
+                            <div className="relative">
+                              <IconMessageSquare className="absolute left-3.5 top-3.5 w-5 h-5 text-slate-400" />
+                              <textarea value={item.comment} onChange={(e) => handleCommentChange(category.id, item.id, e.target.value)} placeholder="Not ekle..." className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900" rows="2" />
+                            </div>
+                            {!item.image ? (
+                              <div>
+                                <input type="file" accept="image/*" capture="environment" id={`img-${item.id}`} className="hidden" onChange={(e) => handleImageUpload(category.id, item.id, e)} />
+                                <label htmlFor={`img-${item.id}`} className="inline-flex items-center justify-center w-full py-3.5 border-2 border-dashed border-slate-300 rounded-xl text-slate-600 font-bold cursor-pointer">
+                                  <IconCamera className="w-5 h-5 mr-2" /> Fotoğraf Çek / Ekle
+                                </label>
+                              </div>
+                            ) : (
+                              <div className="relative rounded-xl overflow-hidden border-2 border-slate-200 h-48 bg-slate-100 flex items-center justify-center">
+                                <img src={item.image} className="max-h-full object-contain" />
+                                <button onClick={() => removeImage(category.id, item.id)} className="absolute top-2 right-2 bg-rose-500 text-white p-2 rounded-lg"><IconTrash className="w-5 h-5" /></button>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-lg border-t z-40">
+                <button onClick={() => { window.scrollTo(0,0); setIsPreview(true); }} className="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold text-lg flex items-center justify-center shadow-lg active:scale-95">
+                  <IconEye className="w-6 h-6 mr-2" /> Önizle ve PDF Oluştur
+                </button>
+              </div>
+            </div>
+          );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+
+
